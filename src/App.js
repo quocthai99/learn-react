@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
+import AdminTemplate from "./container/AdminTemplate";
+import HomeTemplate from "./container/HomeTemplate";
+import AboutPage from './container/HomeTemplate/AboutPage';
+import HomePage from './container/HomeTemplate/HomePage';
+import ListMoviePage from './container/HomeTemplate/ListMoviePage';
+import DashboardPage from './container/AdminTemplate/DashboardPage';
+import AddUserPage from './container/AdminTemplate/AddUserPage'
+import AddMoviePage from './container/AdminTemplate/AddMoviePage'
+import HookPage from './container/HomeTemplate/Hooks';
+import HocPage from './container/HomeTemplate/HocPage';
+import DetailMovie from './container/HomeTemplate/DetailMovie';
+import AuthPage from './container/AdminTemplate/AuthPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='' element={<HomeTemplate />}>
+          <Route path='' element={<HomePage />} />
+          <Route path='about' element={<AboutPage />} />
+          <Route path='list-movie' element={<ListMoviePage />} />
+          <Route path='hook' element={<HookPage />} />
+          <Route path='hoc' element={<HocPage />} />
+          <Route path='detail/:id' element={<DetailMovie />} />
+        </Route>
+
+        <Route path='admin' element={<AdminTemplate />}>
+          <Route path='dashboard' element={<DashboardPage />} />
+          <Route path='user' element={<AddUserPage />} />
+          <Route path='movie' element={<AddMoviePage />} />
+        </Route>
+
+        <Route path='auth' element={<AuthPage />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
