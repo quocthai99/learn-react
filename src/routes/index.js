@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import { lazy } from "react";
 
 import HomeTemplate from "../container/HomeTemplate";
 import HomePage from "../container/HomeTemplate/HomePage";
@@ -19,26 +20,26 @@ import AuthPage from "../container/AdminTemplate/AuthPage";
 const routes = [
     {
         path: "",
-        element: HomeTemplate,
+        element: lazy(() => import('../container/HomeTemplate')),
         nested: [
-            { path: "", element: HomePage },
-            { path: "about", element: AboutPage },
-            { path: "list-movie", element: ListMoviePage },
-            { path: "hook", element: HookPage },
-            { path: "hoc", element: HocPage },
-            { path: "detail/:id", element: DetailMovie },
+            { path: "", element:  lazy(() => import('../container/HomeTemplate/HomePage')) },
+            { path: "about", element:  lazy(() => import('../container/HomeTemplate/AboutPage')) },
+            { path: "list-movie", element:  lazy(() => import('../container/HomeTemplate/ListMoviePage')) },
+            { path: "hook", element:  lazy(() => import('../container/HomeTemplate/Hooks')) },
+            { path: "hoc", element:  lazy(() => import('../container/HomeTemplate/HocPage')) },
+            { path: "detail/:id", element:  lazy(() => import('../container/HomeTemplate/DetailMovie')) },
         ]
     },
     {
         path: "admin",
-        element: AdminTemplate,
+        element:  lazy(() => import('../container/AdminTemplate')),
         nested: [
-            { path: "dashboard", element: DashboardPage },
-            { path: "user", element: AddUserPage },
-            { path: "movie", element: AddMoviePage },
+            { path: "dashboard", element:  lazy(() => import('../container/AdminTemplate/DashboardPage')) },
+            { path: "user", element:  lazy(() => import('../container/AdminTemplate/AddUserPage')) },
+            { path: "movie", element:  lazy(() => import('../container/AdminTemplate/AddMoviePage')) },
         ]
     },
-    { path: "auth", element: AuthPage },
+    { path: "auth", element:  lazy(() => import('../container/AdminTemplate/AuthPage')) },
 ]
 
 const renderRoutes = () => {
